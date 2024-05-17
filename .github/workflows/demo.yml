@@ -31,7 +31,7 @@ jobs:
         run: find dist/assets/*.js -type f -execdir echo '{}' ';'
       - name: Publish JS filename
         id: publishjs
-        run: find dist/assets/*.js -type f -execdir echo 'script-file={} >> $GITHUB_OUTPUT' ';'
+        run: find dist/assets/*.js -type f -execdir echo 'script-file={}' >> '$GITHUB_OUTPUT' ';'
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
