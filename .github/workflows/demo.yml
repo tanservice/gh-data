@@ -27,6 +27,8 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
+      - name: Print JS filename
+        run: find dist/assets/*.js -type f -execdir echo '{}' ';'
       - name: Publish JS filename
         id: publishjs
         run: find dist/assets/*.js -type f -execdir echo 'script-file={} >> $GITHUB_OUTPUT' ';'
@@ -49,6 +51,8 @@ jobs:
       - name: Output content
         run: ls
       - name: Output JS files
-        run: echo "${{ needs.build.outputs.script-file }}"
+        env:
+          script-file: ${{needs.build.outputs.script-file}}
+        run: echo "$script-file"
       - name: Deploy
         run: echo "Deploying..."
