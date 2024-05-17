@@ -28,13 +28,13 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v4
-      - name: Install dependencies
-        run: npm ci
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
           path: ~/.npm
           key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        run: npm ci
       - name: Build website
         run: npm run build
       - name: Print JS filename
