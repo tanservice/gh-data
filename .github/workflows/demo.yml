@@ -51,8 +51,6 @@ jobs:
       - name: Output content
         run: ls
       - name: Output JS files
-        env:
-          script-file: ${{needs.build.outputs.script-file}}
-        run: echo "$script-file"
+        run: echo "${{needs.build.outputs.script-file}}"
       - name: Deploy
         run: echo "Deploying..."
